@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="notRikka" content="width=device-width, initial-scale=1.0">
+    <title>个人展示页面</title>
+    <style></style>
+    <link href="css/index.css" rel="stylesheet">
+</head>
+<body>
+    <div class="landing-container" id="landing">
+        <div class="startwaves" id="downout">
+			<div class="waves">
+				<img src="medias/pics/waves/wave-1.svg" />
+				<img src="medias/pics/waves/wave-2.svg" />
+				<img src="medias/pics/waves/wave-3.svg" />
+				<img src="medias/pics/waves/wave-4.svg" />
+				<img src="medias/pics/waves/wave-5.svg" id="shape" />
+			</div>
+		</div>
+        <div id="videobg">
+			<video id="video2" class="videos" muted="muted" loop>
+				<source src="medias/vids/fv_movie2.mp4">
+			</video>
+			<video id="video1" class="videos" muted="muted">
+				<source src="medias/vids/fv_movie1.mp4">
+			</video>
+			<div id="centertext">
+				<h1>Welcome</h1>
+				<p>Remember, You Will Die.<br />Time never waits.<br />It delivers all equally to the same end.</p>
+			</div>
+			<img id="p3relogo" src="medias/pics/logo_2.png" alt="" />
+		</div>
+    </div>
+
+
+    <nav class="navigation">
+        <ul class="navigation-list">
+            <li class="navigation-item">
+                <a href="index.html" class="navigation-link">首页</a>
+            </li>
+            <li class="navigation-separator">|</li>
+            <li class="navigation-item">
+                <a href="#" class="navigation-link">个人简介</a>
+                <div class="profile-hover">
+                    <div class="profile-info">
+                        <img src="medias/pics/profile.png" alt="个人头像" class="profile-avatar">
+                        <div class="profile-id">吴权恒</div>
+                    </div>
+                    <p class="profile-intro">
+                        这个人很懒，什么都没有留下。
+                    </p>
+                </div>
+            </li>
+            <li class="navigation-separator">|</li>
+            <li class="navigation-item">
+                <a href="#" class="navigation-link">风采展示</a>
+            </li>
+            <li class="navigation-separator">|</li>
+            <li class="navigation-item">
+                <a href="#" class="navigation-link">给我留言</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="content-container">
+        <section class="content-section" id="main-content">
+            <h1>欢迎来到示例页面</h1>
+            <iframe src="" title="内容展示" name="mainFrame" class="responsive-iframe"></iframe>
+        </section>
+        <section class="content-section" id="sidebar">
+            <h1>侧边栏</h1>
+            <ul class="sidebar_ul">
+                <li class="sidebar_li"><a href="contents/pictures_wall.html" target="mainFrame" class="navigation-link">照片墙</a></li>
+                <li class="sidebar_li"><a href="contents/schedule.html" target="mainFrame" class="navigation-link">课程表</a></li>
+            </ul>
+            
+            
+        </section>
+    </div>
+    <footer class="page-footer">
+        青岛大学 计算机科学技术学院 · 2023计算机科学与技术专业
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const content = document.getElementById('content');
+            const landing = document.getElementById('landing');
+            const enterButton = document.getElementById('enterButton');
+            const scrollIndicator = document.getElementById('scrollIndicator');
+            setTimeout(() => {
+                content.classList.add('active');
+            }, 100);
+            function enterSite() {
+                landing.classList.add('slide-out');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+            }
+            scrollIndicator.addEventListener('click', enterSite);
+            enterButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                enterSite();
+            });
+        });
+
+        var downwave = document.getElementById('downout');
+			downwave.addEventListener('animationend', function() {
+				downwave.style.display = 'none'
+				var video1 = document.getElementById("video1");
+				var video2 = document.getElementById("video2");
+				video1.play();
+				video1.addEventListener('ended', function() {
+					video1.style.display = 'none'
+					video2.play();
+				});
+			});
+        
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const nav = document.querySelector('.navigation');
+            const threshold = window.innerHeight;
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > threshold) {
+                    nav.classList.add('fixed');
+                } else {
+                    nav.classList.remove('fixed');
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const initialPage = document.getElementById('landing');
+            const navBar = document.querySelector('.navigation'); 
+            const threshold = window.innerHeight;
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > threshold) {
+                    initialPage.remove();
+                    navBar.style.position = 'fixed';
+                    navBar.style.top = '0';
+                    navBar.style.width = '100%';
+                    window.scrollTo({ top: threshold, behavior: 'auto' });
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

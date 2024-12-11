@@ -1,0 +1,115 @@
+        :root {
+            --bg-primary: #f0f4f8;
+            --bg-container: #ffffff;
+            --text-primary: #2c3e50;
+            --border-color: #e0e6ed;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: var(--bg-container);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px var(--shadow-color);
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 8px;
+        }
+
+        .schedule-table caption {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .schedule-table th {
+            background-color: #f8f9fa;
+            color: #495057;
+            padding: 10px;
+            font-weight: 500;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .schedule-table td {
+            min-width: 80px;
+            height: 100px;
+            border-radius: 8px;
+            text-align: center;
+            vertical-align: middle;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            position: relative;
+            color: white;
+            padding: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .schedule-table td:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .time-cell {
+            background-color: #f1f3f5;
+            color: black;
+            font-weight: 600;
+            box-shadow: none;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            opacity: 1;
+        }
+
+        .time-cell:hover {
+            transform: none;
+        }
+
+        .data-structure { background-color: #e7b6ca; }
+        .probability { background-color: #bda9f7; }
+        .web-development { background-color: #e19cb1; }
+        .english { background-color: #81acf7; }
+        .political-situation { background-color: #a4dee0; }
+        .physical-education { background-color: #eab776; }
+        .modern-history { background-color: #78b7f0; }
+        .software-engineering { background-color: #679bcd; }
+        .big-data-contest { background-color: #e67797; }
+        .discrete-math { background-color: #e38875; }
+        .innovation-entrepreneurship { background-color: #8abaf9; }
+        .rest { background-color: #8abaf9; }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px 10px;
+                padding: 15px;
+            }
+
+            .schedule-table {
+                font-size: 12px;
+            }
+
+            .schedule-table td {
+                min-width: 50px;
+                height: 70px;
+                padding: 3px;
+            }
+        }

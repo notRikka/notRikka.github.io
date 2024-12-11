@@ -1,0 +1,88 @@
+:root {
+    --bg-primary: rgba(0, 0, 0, 0);
+    --bg-container: #ffffff;
+    --text-primary: #2c3e50;
+    --border-color: #e0e6ed;
+    --shadow-color: rgba(0, 0, 0, 0);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--bg-primary);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 自适应列数 */
+    grid-auto-rows: 200px;
+    gap: 10px;
+    padding: 20px;
+    justify-items: center;
+}
+
+.photo-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    background-color: var(--bg-container);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.photo-item:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+    body {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+/* 模态框样式 */
+.modal {
+    display: none; /* 默认隐藏 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: auto; /* 启用滚动 */
+}
+
+.modal img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain; /* 保持图像比例 */
+}
+
+.modal .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
