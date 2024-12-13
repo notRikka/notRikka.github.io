@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <title>用户信息调查</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #f4f6f7;
+            --text-color: #2c3e50;
+            --input-border-color: #bdc3c7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--input-border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="number"]:focus,
+        input[type="date"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .radio-group label, .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        input[type="radio"], 
+        input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--input-border-color);
+            border-radius: 50%;
+            outline: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        input[type="radio"]:checked, 
+        input[type="checkbox"]:checked {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin: 0 10px;
+            }
+
+            .radio-group, .checkbox-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>用户信息调查</h1>
+        <form id="a1" name="a" method="post" action="" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="b11">用户名</label>
+                <input id="b11" name="b1" type="text" placeholder="请输入你的姓名（至少6个字符）">
+            </div>
+
+            <div class="form-group">
+                <label for="b12">密码</label>
+                <input id="b12" name="b2" type="password" placeholder="请输入密码">
+            </div>
+
+            <div class="form-group">
+                <label>性别</label>
+                <div class="radio-group">
+                    <label>
+                        <input id="b13_girl" name="b3" value="girl" type="radio">
+                        女
+                    </label>
+                    <label>
+                        <input id="b13_boy" name="b3" value="boy" type="radio">
+                        男
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>爱好</label>
+                <div class="checkbox-group">
+                    <label>
+                        <input id="b14_run" name="b4" value="run" type="checkbox">
+                        跑步
+                    </label>
+                    <label>
+                        <input id="b14_swim" name="b4" value="swim" type="checkbox">
+                        游泳
+                    </label>
+                    <label>
+                        <input id="b14_music" name="b4" value="music" type="checkbox">
+                        音乐
+                    </label>
+                    <label>
+                        <input id="b14_read" name="b4" value="read" type="checkbox">
+                        阅读
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="b15">年龄</label>
+                <input id="b15" name="b5" type="number" min="14" max="100" placeholder="请输入14-100之间的年龄">
+            </div>
+
+            <div class="form-group">
+                <label for="b16">日期</label>
+                <input id="b16" name="b6" type="date">
+            </div>
+
+            <input id="b17" name="b7" value="提交" type="submit">
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            var name = document.getElementById("b11").value;
+            var password = document.getElementById("b12").value;
+            var age = document.getElementById("b15").value;
+            var gender = document.querySelector('input[name="b3"]:checked');
+            var hobbies = document.querySelectorAll('input[name="b4"]:checked');
+
+            if (name.length < 6) {
+                alert("用户名长度必须至少为6个字符！");
+                return false;
+            }
+
+            if (password === "") {
+                alert("密码不能为空！");
+                return false;
+            }
+
+            if (age < 14 || age > 100) {
+                alert("年龄必须在14到100之间！");
+                return false;
+            }
+
+            if (!gender) {
+                alert("请选择性别！");
+                return false;
+            }
+
+            if (hobbies.length === 0) {
+                alert("请至少选择一个爱好！");
+                return false;
+            }
+
+            var selectedHobbies = Array.from(hobbies).map(function(checkbox) {
+                return checkbox.value;
+            }).join(", ");
+    
+            alert("确认要提交信息为:\n" +
+                  "姓名: " + name + "\n" +
+                  "密码: " + password + "\n" +
+                  "年龄: " + age + "\n" +
+                  "性别: " + gender.value + "\n" +
+                  "爱好: " + selectedHobbies + "\n" +
+                  "日期: " + document.getElementById("b16").value);
+
+            return true;
+        }
+    </script>
+</body>
+</html>

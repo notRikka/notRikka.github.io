@@ -1,0 +1,77 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>升旗仪式</title>
+<style>
+
+</style>
+</head>
+
+<body style="text-align:center;">
+<audio id="国歌" src="musics/中华人民共和国国歌.mp3"></audio>
+<button type="button" onclick="开始()" style="font-size:2em;background:red;border:none;color:gold;">
+升旗仪式现在开始。请全体起立，面向国旗，行注目礼，奏唱国歌。
+</button>
+<canvas id="升旗仪式"></canvas>
+</body>
+<script>
+	var x = 900;
+	var y = 720;
+	var n = 0;
+	var iw = 312;
+	var ih = 225;
+	var m = 3;
+	var img = new Image(312,900);
+	img.src="pics/国旗.png";
+	var img0 = new Image(288,300);
+	img0.src="pics/国旗0.png";
+	var cloud = new Image(312,141);
+	cloud.src = "pics/cloud.png";
+	var canvas = document.getElementById("升旗仪式");
+	canvas.width=1280;
+	canvas.height=860;
+	canvas.style.backgroundImage="url('pics/天安门.jpeg')";
+	canvas.style.backgroundPosition="center";
+	var cloud = new Image(624,283);
+    cloud.src = "pics/cloud.png";
+	var cloudX = 0;
+    var cloudSpeed = 0.02;
+    var cloudDirection = 1;
+	
+	var ctx = canvas.getContext("2d");
+	
+	img0.onload = function(){
+		ctx.drawImage(img0, x, y, 80, 80);
+	};
+	
+	function 开始(){
+		document.getElementById("国歌").play();
+		setInterval(升旗仪式, 108);
+		setInterval(云朵移动, 1);
+	}
+
+	function 升旗仪式(){
+		ctx.clearRect(0, 0, 1280, 860);
+		ctx.drawImage(img, 0, ih*n, iw, ih, x, y, iw/m, ih/m);
+		n = ++n % 4;
+		m += 0.002;
+		x -= 0.015;
+		if(y <= 70){
+			//clearInterval(t);
+			y = 70;
+			m = 4;
+			x = 893;
+		}
+		y -= 1.5;
+	}
+	function 云朵移动() {
+        ctx.clearRect(cloudX, 50, cloud.width, cloud.height);
+        cloudX += cloudSpeed * cloudDirection;
+        if (cloudX > canvas.width - cloud.width || cloudX < 0) {
+            cloudDirection = -cloudDirection;
+        }
+        ctx.drawImage(cloud, cloudX, 50);
+    }
+</script>
+</html>
