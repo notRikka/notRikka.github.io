@@ -1,0 +1,322 @@
+:root {
+    --primary-color: #007BFF;
+    --secondary-color: #0056b3;
+    --background-color: rgba(255, 255, 255, 0.9);
+    --text-color: #333;
+    --hover-background: rgba(0, 123, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background: url(../medias/pics/back.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.navigation {
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 15px 5%;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+}
+
+.navigation-list {
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+}
+
+.navigation-item {
+    margin: 0 10px;
+    position: relative;
+}
+
+.navigation-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.navigation-link:hover {
+    background-color: var(--hover-background);
+    color: var(--secondary-color);
+}
+
+.navigation-separator {
+    color: #ccc;
+    margin: 0 5px;
+}
+
+.profile-hover {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 300px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 20px;
+    z-index: 10;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.navigation-item:hover .profile-hover {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+#sidebar {
+    position: fixed;
+    flex: 1;
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 720px;
+    top: 80px;
+    left: 260px;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+#sidebar:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+}
+
+.sidebar-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.sidebar-id {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.sidebar-signature {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.sidebar-info ul {
+    list-style-type: none;
+    text-align: left;
+    padding: 0;
+}
+
+.sidebar-info li {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+#info-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#info-button:hover {
+    background-color: #45a049;
+}
+
+.content-container {
+    justify-content: center;
+    margin-left: 600px;
+}
+
+.content-section {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    transition: transform 0.3s ease;
+    
+}
+
+.main-section {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    transition: transform 0.3s ease;
+    color: #007BFF;
+}
+
+
+.show-image {
+    margin-top: 20px;
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#main-content {
+    max-width: 800px;
+    margin-top: 20px;
+}
+#main-content:hover,#myHometown:hover,#myHobby:hover {
+    transform: scale(1.006);
+    transition: transform 0.3s ease;
+}
+#myHometown,#myHobby{
+    max-width: 800px;
+    margin-top: 20px;
+    height: 100%;
+}
+.responsive-iframe {
+    margin-top: 60px;
+    height: 4500px;
+    width: 100%;
+    border: none;
+    transition: height 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+    .content-container {
+        flex-direction: column;
+    }
+
+    #main-content {
+        min-width: 100%;
+    }
+}
+
+.page-footer {
+    text-align: center;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #7f8c8d;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+    cursor: pointer;
+}
+
+.scroll-indicator::before {
+    content: '▼';
+    font-size: 2rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+
+.slide-out {
+    transform: translateY(-100%);
+    transition: transform 1s ease;
+}
+
+
+#centertext {
+        color: #444;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        animation-name: out;
+        animation-duration: 1.5s;
+        animation-delay: 3s;
+        animation-fill-mode: forwards; 
+        z-index: 100;
+}
+
+@keyframes out {
+        100% {
+            opacity: 1;
+            display: none;
+        }
+}
+@keyframes in {
+        100% {
+            opacity: 1;
+        }
+}
+
+
+
+@keyframes slide-in {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-out {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+
+.page-content {
+    opacity: 0;
+    transform: translateX(100%);
+    animation: slide-in 1s ease forwards;
+}
+
+.page-content.exit {
+    animation: slide-out 1s ease forwards;
+}
+

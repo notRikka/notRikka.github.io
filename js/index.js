@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const video2 = document.getElementById('video2');
     const clock = document.getElementById('clock');
     const dateElement = document.getElementById('date');
+    const threshold = window.innerHeight;
 
     // 页面加载时添加active类
     if (content) {
@@ -19,27 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 100);
     }
 
-    // 进入网站函数
-    function enterSite() {
-        if (landing) {
-            landing.classList.add('slide-out');
-        }
-        setTimeout(() => {
-            window.location.href = 'index.html';
-        }, 1000);
-    }
-
-    // 点击进入按钮或滚动指示器时执行进入网站
-    if (scrollIndicator) {
-        scrollIndicator.addEventListener('click', enterSite);
-    }
-
-    if (enterButton) {
-        enterButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            enterSite();
-        });
-    }
 
     // downwave动画结束时，播放视频
     if (downwave) {
@@ -56,23 +36,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 滚动时固定导航栏
-    const threshold = window.innerHeight;
     window.addEventListener('scroll', () => {
         if (window.scrollY > threshold) {
-            if (nav) {
-                nav.classList.add('fixed');
-            }
+            // 滚动超过阈值时
             if (landing) {
-                landing.remove();
+                landing.remove(); // 移除 landing
             }
             if (nav) {
-                nav.style.position = 'fixed';
-                nav.style.top = '0';
-                nav.style.width = '100%';
+                nav.classList.add('fixed'); // 添加固定类
+                Object.assign(nav.style, {
+                    position: 'fixed',
+                    top: '0',
+                    width: '100%',
+                    zIndex: '1000', // 确保导航栏层级高于其他元素
+                });
             }
         } else {
+            // 滚动未超过阈值时
             if (nav) {
-                nav.classList.remove('fixed');
+                nav.classList.remove('fixed'); // 移除固定类
+                nav.style.position = ''; // 清空内联样式
+                nav.style.top = '';
+                nav.style.width = '';
             }
         }
     });
@@ -105,4 +90,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // 立即更新时间并每秒更新一次
     updateClock();
     setInterval(updateClock, 1000);
+});
+
+
+
+window.onload = () => {
+    const landing = document.getElementById('landing');
+    
+    // 检查 sessionStorage 中的状态
+    const hasVisited = sessionStorage.getItem('hasVisited');
+
+    if (hasVisited === 'true' && landing) {
+        // 如果是内部跳转，则隐藏 landing
+        landing.style.display = 'none';
+    } else {
+        // 如果是首次访问，则记录状态
+        sessionStorage.setItem('hasVisited', 'true');
+    }
+};
+
+// 滚动事件：隐藏 landing
+window.addEventListener('scroll', () => {
+    const landing = document.getElementById('landing');
+    if (window.scrollY > 1000 && landing) {
+        landing.style.display = 'none';
+    }
 });

@@ -21,8 +21,7 @@ body {
 }
 
 .navigation {
-    position: absolute; /* 初始位于页面下方 */
-    top: 100vh; /* 页面底部以下 */
+
     left: 0;
     width: 100%;
     z-index: 1000;
@@ -33,12 +32,13 @@ body {
     padding: 15px 5%;
     backdrop-filter: blur(20px);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-
+    margin-bottom: 20px;
 }
 
 .navigation.fixed {
     position: fixed; /* 滑动后固定在顶部 */
     top: 0;
+    margin-bottom: 20px;
 }
 
 .navigation-list {
@@ -94,11 +94,12 @@ body {
 
 
 #sidebar {
+    position: fixed;
     flex: 1;
     min-width: 300px;
     max-width: 300px;
     min-height: 720px;
-    position: fixed;
+    
     top: 80px; /* 保证不被顶部导航遮挡 */
     left: 260px;
     padding: 20px;
@@ -106,8 +107,9 @@ body {
     background-color: rgba(255, 255, 255, 0.8);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     display: none; /* 初始时隐藏 */
-    
 }
+
+
 #sidebar:hover {
     transform: scale(1.02);
     transition: transform 0.3s ease;
@@ -176,15 +178,6 @@ body {
     margin-left: 600px;
 }
 
-.content-section {
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    padding: 30px;
-    transition: transform 0.3s ease;
-    
-}
-
 .main-section {
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
@@ -242,22 +235,21 @@ h1 a:hover {
 }
 
 #info-container{
-    padding-top: 80px;
     display: flex;
-    margin-left: 308px;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 600px;
 }
 #time-content{
-    max-width: 395px;
-    min-width: 395px;
+    width: 395px;
     min-height: 200px;
-    margin-bottom: 10px;
     margin-right: 10px;
 }
 #intro-content{
-    max-width: 395px;
-    min-width: 395px;
+    width: 395px;
     min-height: 200px;
-    margin-bottom: 10px;
+    
 }
 #time-content:hover {
     transform: scale(1.05);
@@ -319,12 +311,19 @@ h1 a:hover {
 }
 
 .landing-content {
-    max-width: 600px;
-    padding: 20px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: white; /* 可根据需要更改背景颜色 */
+    z-index: 1000;
+    overflow: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.landing-container.hidden {
     opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 1s, transform 1s;
+    visibility: hidden;
 }
 
 .landing-content.active {
@@ -453,7 +452,7 @@ h1 a:hover {
             opacity: 1;
         }
 }
-#p3relogo{
+#namelogo{
         position: absolute;
         right: 12%;
         top: 50%;
@@ -515,3 +514,79 @@ h1 a:hover {
          transform: translateY(20px);
     }
 }   
+
+
+
+
+@keyframes slide-in {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-out {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+
+.page-content {
+    opacity: 0;
+    transform: translateX(100%);
+    animation: slide-in 1s ease forwards;
+}
+
+.page-content.exit {
+    animation: slide-out 1s ease forwards;
+}
+
+
+.piano {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+.key {
+    width: 50px;
+    height: 200px;
+    border: 1px solid #000;
+    margin: 0 1px;
+    cursor: pointer;
+}
+
+.white {
+    background-color: white;
+    z-index: 1;
+}
+
+.black {
+    background-color: black;
+    width: 35px;
+    height: 120px;
+    position: relative;
+    margin-left: -17px;
+    margin-right: -17px;
+    z-index: 2;
+}
+
+.white:hover, .black:hover {
+    background-color: #f0f0f0;
+}
+
+#myPiano{
+    max-width: 800px;
+    min-height: 500px;
+    margin-top: 10px;
+}
