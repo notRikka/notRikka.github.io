@@ -259,19 +259,6 @@ body {
 }
 
 
-#centertext {
-        color: #444;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        animation-name: out;
-        animation-duration: 1.5s;
-        animation-delay: 3s;
-        animation-fill-mode: forwards; 
-        z-index: 100;
-}
 
 @keyframes out {
         100% {

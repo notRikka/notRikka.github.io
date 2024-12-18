@@ -518,39 +518,41 @@ h1 a:hover {
 
 
 
+.page-content {
+    opacity: 0;
+    transform: translateX(100%);
+    will-change: opacity, transform; /* 优化性能 */
+    animation: slide-in 1s ease forwards;
+}
+
+.page-content.exit {
+    opacity: 0;
+    transform: translateX(-100%);
+    will-change: opacity, transform;
+    animation: slide-out 1s ease forwards;
+}
+
 @keyframes slide-in {
     from {
-        transform: translateX(100%);
         opacity: 0;
+        transform: translateX(100%);
     }
     to {
-        transform: translateX(0);
         opacity: 1;
+        transform: translateX(0);
     }
 }
 
 @keyframes slide-out {
     from {
-        transform: translateX(0);
         opacity: 1;
+        transform: translateX(0);
     }
     to {
-        transform: translateX(-100%);
         opacity: 0;
+        transform: translateX(-100%);
     }
 }
-
-
-.page-content {
-    opacity: 0;
-    transform: translateX(100%);
-    animation: slide-in 1s ease forwards;
-}
-
-.page-content.exit {
-    animation: slide-out 1s ease forwards;
-}
-
 
 .piano {
     display: flex;

@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 获取元素
     const content = document.getElementById('content');
     const landing = document.getElementById('landing');
     const enterButton = document.getElementById('enterButton');
@@ -13,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const dateElement = document.getElementById('date');
     const threshold = window.innerHeight;
 
-    // 页面加载时添加active类
     if (content) {
         setTimeout(() => {
             content.classList.add('active');
@@ -21,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // downwave动画结束时，播放视频
+
     if (downwave) {
         downwave.addEventListener('animationend', () => {
             downwave.style.display = 'none';
@@ -35,39 +33,39 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 滚动时固定导航栏
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > threshold) {
-            // 滚动超过阈值时
+
             if (landing) {
-                landing.remove(); // 移除 landing
+                landing.remove(); 
             }
             if (nav) {
-                nav.classList.add('fixed'); // 添加固定类
+                nav.classList.add('fixed');
                 Object.assign(nav.style, {
                     position: 'fixed',
                     top: '0',
                     width: '100%',
-                    zIndex: '1000', // 确保导航栏层级高于其他元素
+                    zIndex: '1000', 
                 });
             }
         } else {
-            // 滚动未超过阈值时
+
             if (nav) {
-                nav.classList.remove('fixed'); // 移除固定类
-                nav.style.position = ''; // 清空内联样式
+                nav.classList.remove('fixed');
+                nav.style.position = '';
                 nav.style.top = '';
                 nav.style.width = '';
             }
         }
     });
 
-    // 在主页显示侧边栏
+
     if (sidebar && landing) {
         sidebar.style.display = 'block';
     }
 
-    // 更新时间和日期
+
     function updateClock() {
         const now = new Date();
         const days = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
@@ -87,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 立即更新时间并每秒更新一次
+
     updateClock();
     setInterval(updateClock, 1000);
 });
@@ -97,22 +95,24 @@ document.addEventListener('DOMContentLoaded', () => {
 window.onload = () => {
     const landing = document.getElementById('landing');
     
-    // 检查 sessionStorage 中的状态
+
     const hasVisited = sessionStorage.getItem('hasVisited');
 
     if (hasVisited === 'true' && landing) {
-        // 如果是内部跳转，则隐藏 landing
+
         landing.style.display = 'none';
     } else {
-        // 如果是首次访问，则记录状态
+
         sessionStorage.setItem('hasVisited', 'true');
     }
 };
 
-// 滚动事件：隐藏 landing
+
 window.addEventListener('scroll', () => {
     const landing = document.getElementById('landing');
     if (window.scrollY > 1000 && landing) {
         landing.style.display = 'none';
     }
 });
+
+
