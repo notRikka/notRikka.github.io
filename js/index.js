@@ -110,7 +110,7 @@ window.onload = () => {
 
 window.addEventListener('scroll', () => {
     const landing = document.getElementById('landing');
-    if (window.scrollY > 1000 && landing) {
+    if (window.scrollY > threshold && landing) {
         landing.style.display = 'none';
     }
 });
