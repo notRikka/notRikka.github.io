@@ -24,49 +24,101 @@ body {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background-color: var(--background-color);
+    background-color: rgba(var(--background-color), 0.85);
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
-    padding: 15px 5%;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 1rem 8%;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    margin-bottom: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
+.navigation.fixed {
+    position: fixed;
+    top: 0;
+    transform: translateY(0);
+    animation: slideDown 0.5s ease-in-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
 }
 
 .navigation-list {
     display: flex;
     list-style-type: none;
     align-items: center;
+    gap: 1.5rem;
 }
 
 .navigation-item {
-    margin: 0 10px;
     position: relative;
+}
+
+.navigation-item::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    background-color: var(--secondary-color);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.navigation-item:hover::after {
+    width: 100%;
 }
 
 .navigation-link {
     color: var(--primary-color);
     text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
+    letter-spacing: 0.025em;
 }
 
 .navigation-link:hover {
-    background-color: var(--hover-background);
+    background-color: rgba(var(--hover-background), 0.1);
     color: var(--secondary-color);
+    transform: translateY(-1px);
+}
+
+.navigation-link:active {
+    transform: translateY(0);
 }
 
 .navigation-separator {
-    color: #ccc;
-    margin: 0 5px;
+    color: rgba(204, 204, 204, 0.6);
+    margin: 0 0.5rem;
+    user-select: none;
 }
 
-.navigation-item:hover .profile-hover {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
+@media (max-width: 768px) {
+    .navigation {
+        padding: 1rem 5%;
+    }
+    
+    .navigation-list {
+        gap: 1rem;
+    }
+    
+    .navigation-link {
+        padding: 0.5rem 1rem;
+    }
 }
 #message:hover{
     cursor: not-allowed;
@@ -74,21 +126,51 @@ body {
 
 
 .main-section {
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0.6) 100%
+    );
+    border-radius: 16px;
+    box-shadow: 
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
     padding: 30px;
-    transition: all 0.3s ease; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     color: #007BFF;
     margin: 30px auto;
     max-width: 800px;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.main-section:hover{
-    transform: scale(1.04) !important;
+.main-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.main-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.3);
 }
 
 

@@ -92,27 +92,73 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-window.onload = () => {
-    const landing = document.getElementById('landing');
-    
 
+window.onload = function() {
+    const landing = document.getElementById('landing');
     const hasVisited = sessionStorage.getItem('hasVisited');
+    const commentList = document.getElementById('commentList');
+
 
     if (hasVisited === 'true' && landing) {
-
         landing.style.display = 'none';
     } else {
-
         sessionStorage.setItem('hasVisited', 'true');
     }
+
+
+    loadComments();
+
+    document.getElementById('commentForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const commentText = document.getElementById('comment').value;
+        if (commentText) {
+            const comments = getCommentsFromStorage();
+            comments.push(commentText);
+            saveComment(comments);
+            document.getElementById('comment').value = ''; 
+            loadComments();
+        }
+    });
 };
 
 
+function loadComments() {
+    const commentList = document.getElementById('commentList');
+    const comments = getCommentsFromStorage();
+
+
+    comments.forEach((comment, index) => {
+        const commentElement = document.createElement('div');
+        commentElement.classList.add('comment-item');
+        commentElement.innerHTML = `
+            <div class="comment-avatar">
+                <img src="medias/pics/comment_avatar/default.jpg" alt="用户头像" style="width: 100%; height: 100%; border-radius: 50%;" />
+            </div>
+            <div class="comment-content">
+                <p class="username">访客</p>
+                <p>${comment}</p>
+                <p class="timestamp">2077/5/31</p>
+            </div>
+        `;
+        commentList.appendChild(commentElement);
+    });
+}
+
+
+function getCommentsFromStorage() {
+    const storedComments = localStorage.getItem('comments');
+    return storedComments ? JSON.parse(storedComments) : [];
+}
+
+
+function saveComment(comments) {
+    localStorage.setItem('comments', JSON.stringify(comments));
+}
+
 window.addEventListener('scroll', () => {
     const landing = document.getElementById('landing');
+    const threshold = 200;
     if (window.scrollY > threshold && landing) {
         landing.style.display = 'none';
     }
 });
-
-
